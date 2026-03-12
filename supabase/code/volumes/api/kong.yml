@@ -34,6 +34,16 @@ basicauth_credentials:
 ### API Routes
 ###
 services:
+  ## Health check (no auth) - for EasyPanel / load balancer reachability
+  - name: health
+    url: http://auth:9999/health
+    routes:
+      - name: health
+        paths:
+          - /health
+    plugins:
+      - name: cors
+
   ## Open Auth routes
   - name: auth-v1-open
     url: http://auth:9999/verify

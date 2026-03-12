@@ -491,8 +491,9 @@ services:
       timeout: 5s
       retries: 10
     depends_on:
+      # use service_started so stack comes up even if vector health check fails (e.g. env/socket)
       vector:
-        condition: service_healthy
+        condition: service_started
     environment:
       POSTGRES_HOST: /var/run/postgresql
       PGPORT: ${POSTGRES_PORT}

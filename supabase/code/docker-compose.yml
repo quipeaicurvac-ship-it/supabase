@@ -527,11 +527,12 @@ services:
           "--no-verbose",
           "--tries=1",
           "--spider",
-          "http://vector:9001/health"
+          "http://127.0.0.1:9001/health"
         ]
-      timeout: 5s
+      timeout: 10s
       interval: 5s
-      retries: 3
+      retries: 5
+      start_period: 15s
     environment:
       # vector.yml uses LOGFLARE_API_KEY in sink URIs; use same value as analytics
       LOGFLARE_API_KEY: ${LOGFLARE_API_KEY:-${LOGFLARE_PUBLIC_ACCESS_TOKEN}}

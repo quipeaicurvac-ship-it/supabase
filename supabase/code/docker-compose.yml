@@ -533,6 +533,8 @@ services:
       interval: 5s
       retries: 3
     environment:
+      # vector.yml uses LOGFLARE_API_KEY in sink URIs; use same value as analytics
+      LOGFLARE_API_KEY: ${LOGFLARE_API_KEY:-${LOGFLARE_PUBLIC_ACCESS_TOKEN}}
       LOGFLARE_PUBLIC_ACCESS_TOKEN: ${LOGFLARE_PUBLIC_ACCESS_TOKEN}
     command:
       [
